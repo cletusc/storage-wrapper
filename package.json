@@ -1,0 +1,35 @@
+{
+  "name": "storage-wrapper",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A storage wrapper for local/session Storage with a few extras. For use in browserify bundles (or anything where require would work).",
+  "main": "index.js",
+  "keywords": [
+    "storage",
+    "localStorage",
+    "sessionStorage"
+  ],
+  "author": "Ryan Chatham <ryan.b.chatham@gmail.com> (https://github.com/cletusc)",
+  "license": "MIT",
+  "devDependencies": {
+    "tape": "^2.14.0",
+    "dom-storage": "^2.0.1",
+    "tap-spec": "^0.2.1",
+    "yuidocjs": "^0.3.50"
+  },
+  "testling": {
+    "files": "test/tests/*.js",
+    "browsers": [
+      "ie/8..latest",
+      "chrome/22..latest",
+      "firefox/25..latest",
+      "safari/latest",
+      "opera/12.0..latest"
+    ]
+  },
+  "scripts": {
+    "test": "tape test/tests/*.js | tap-spec",
+    "docs": "yuidoc",
+    "docs-server": "yuidoc --server"
+  }
+}

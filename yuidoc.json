@@ -1,0 +1,8 @@
+{
+	"options": {
+		"outdir": "docs",
+		"linkNatives": true,
+		"tabtospace": 4,
+		"paths": ["."]
+	}
+}

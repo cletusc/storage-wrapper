@@ -1,0 +1,359 @@
+{
+    "project": {
+        "name": "storage-wrapper",
+        "description": "A storage wrapper for local/session Storage with a few extras. For use in browserify bundles (or anything where require would work).",
+        "version": "0.1.0"
+    },
+    "files": {
+        "test\\shims.js": {
+            "name": "test\\shims.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "index.js": {
+            "name": "index.js",
+            "modules": {},
+            "classes": {
+                "Store": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "Store": {
+            "name": "Store",
+            "shortname": "Store",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "index.js",
+            "line": 8,
+            "description": "Storage wrapper for making routine storage calls super easy.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "options",
+                    "description": "The options for the store. Options not overridden will use the defaults.",
+                    "type": "Object",
+                    "optional": true,
+                    "props": [
+                        {
+                            "name": "namespace",
+                            "description": "See {{#crossLink \"Store/setNamespace\"}}Store#setNamespace{{/crossLink}}",
+                            "type": "Mixed",
+                            "optional": true,
+                            "optdefault": "''"
+                        },
+                        {
+                            "name": "storageType",
+                            "description": "See {{#crossLink \"Store/setStorageType\"}}Store#setStorageType{{/crossLink}}",
+                            "type": "Mixed",
+                            "optional": true,
+                            "optdefault": "'local'"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "classitems": [
+        {
+            "file": "test\\shims.js",
+            "line": 1,
+            "description": "This is used to shim any required browser APIs so that tests can run locally without need for a browser.",
+            "class": "Store"
+        },
+        {
+            "file": "index.js",
+            "line": 22,
+            "description": "Sets the storage namespace.",
+            "itemtype": "method",
+            "name": "setNamespace",
+            "params": [
+                {
+                    "name": "namespace",
+                    "description": "The namespace to work under. To use no namespace (e.g. global namespace), pass in `false` or `null` or an empty string.",
+                    "type": "String|false|null"
+                }
+            ],
+            "class": "Store"
+        },
+        {
+            "file": "index.js",
+            "line": 40,
+            "description": "Gets the current storage namespace.",
+            "itemtype": "method",
+            "name": "getNamespace",
+            "return": {
+                "description": "The current namespace.",
+                "type": "String"
+            },
+            "class": "Store"
+        },
+        {
+            "file": "index.js",
+            "line": 52,
+            "description": "Sets the type of storage to use.",
+            "itemtype": "method",
+            "name": "setStorageType",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "The type of storage to use. Use `session` for `sessionStorage` and `local` for `localStorage`.",
+                    "type": "String"
+                }
+            ],
+            "class": "Store"
+        },
+        {
+            "file": "index.js",
+            "line": 63,
+            "description": "Get the type of storage being used.",
+            "itemtype": "method",
+            "name": "getStorageType",
+            "return": {
+                "description": "The type of storage being used.",
+                "type": "String"
+            },
+            "class": "Store"
+        },
+        {
+            "file": "index.js",
+            "line": 87,
+            "description": "Gets the actual handler to use",
+            "itemtype": "method",
+            "name": "getStorageHandler",
+            "return": {
+                "description": "The storage handler.",
+                "type": "Mixed"
+            },
+            "class": "Store"
+        },
+        {
+            "file": "index.js",
+            "line": 100,
+            "description": "Gets the full storage name for a key, including the namespace, if any.",
+            "itemtype": "method",
+            "name": "getStorageKey",
+            "params": [
+                {
+                    "name": "key",
+                    "description": "The storage key name.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "The full storage name that is used by the storage methods.",
+                "type": "String"
+            },
+            "class": "Store"
+        },
+        {
+            "file": "index.js",
+            "line": 113,
+            "description": "Gets a storage item from the current namespace.",
+            "itemtype": "method",
+            "name": "get",
+            "params": [
+                {
+                    "name": "key",
+                    "description": "The key that the data can be accessed under.",
+                    "type": "String"
+                },
+                {
+                    "name": "defaultValue",
+                    "description": "The default value to return in case the storage value is not set or `null`.",
+                    "type": "Mixed"
+                }
+            ],
+            "return": {
+                "description": "The data for the storage.",
+                "type": "Mixed"
+            },
+            "class": "Store"
+        },
+        {
+            "file": "index.js",
+            "line": 177,
+            "description": "Sets a storage item on the current namespace.",
+            "itemtype": "method",
+            "name": "set",
+            "params": [
+                {
+                    "name": "key",
+                    "description": "The key that the data can be accessed under.",
+                    "type": "String"
+                },
+                {
+                    "name": "val",
+                    "description": "The value to store. May be the following types of data: `RegExp`, `Date`, `Object`, `String`, `Boolean`, `Number`",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "expires",
+                    "description": "The date in the future to expire, or relative number of milliseconds from `Date#now` to expire.\n\nNote: This converts special data types that normally can't be stored in the following way:\n\n- `RegExp`: prefixed with type, flags stored, and source stored as string.\n- `Date`: prefixed with type, stored as string using `Date#toString`.\n- `Object`: prefixed with \"JSON\" indicator, stored as string using `JSON#stringify`.",
+                    "type": "Date|number",
+                    "optional": true
+                }
+            ],
+            "class": "Store"
+        },
+        {
+            "file": "index.js",
+            "line": 236,
+            "description": "Gets all data for the current namespace.",
+            "itemtype": "method",
+            "name": "getAll",
+            "return": {
+                "description": "An object containing all data in the form of `{theKey: theData}` where `theData` is parsed using {{#crossLink \"Store/get\"}}Store#get{{/crossLink}}.",
+                "type": "Object"
+            },
+            "class": "Store"
+        },
+        {
+            "file": "index.js",
+            "line": 250,
+            "description": "List all keys that are tied to the current namespace.",
+            "itemtype": "method",
+            "name": "listKeys",
+            "return": {
+                "description": "The storage keys.",
+                "type": "Array"
+            },
+            "class": "Store"
+        },
+        {
+            "file": "index.js",
+            "line": 269,
+            "description": "Removes a specific key and data from the current namespace.",
+            "itemtype": "method",
+            "name": "remove",
+            "params": [
+                {
+                    "name": "key",
+                    "description": "The key to remove the data for.",
+                    "type": "String"
+                }
+            ],
+            "class": "Store"
+        },
+        {
+            "file": "index.js",
+            "line": 279,
+            "description": "Removes all data and keys from the current namespace.",
+            "itemtype": "method",
+            "name": "removeAll",
+            "class": "Store"
+        },
+        {
+            "file": "index.js",
+            "line": 287,
+            "description": "Removes namespaced items from the cache so your next {{#crossLink \"Store/get\"}}Store#get{{/crossLink}} will be fresh from the storage.",
+            "itemtype": "method",
+            "name": "freshen",
+            "params": [
+                {
+                    "name": "key",
+                    "description": "The key to remove the cache data for.",
+                    "type": "String"
+                }
+            ],
+            "class": "Store"
+        },
+        {
+            "file": "index.js",
+            "line": 299,
+            "description": "Migrate data from a different namespace to current namespace.",
+            "itemtype": "method",
+            "name": "migrate",
+            "params": [
+                {
+                    "name": "migration",
+                    "description": "The migration object.",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "toKey",
+                            "description": "The key name under your current namespace the old data should change to.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "fromNamespace",
+                            "description": "The old namespace that the old key belongs to.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "fromKey",
+                            "description": "The old key name to migrate from.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "fromStorageType",
+                            "description": "The storage type to migrate from. Defaults to same type as where you are migrating to.",
+                            "type": "String",
+                            "optional": true
+                        },
+                        {
+                            "name": "keepOldData",
+                            "description": "Whether old data should be kept after it has been migrated.",
+                            "type": "Boolean",
+                            "optional": true,
+                            "optdefault": "false"
+                        },
+                        {
+                            "name": "overwriteNewData",
+                            "description": "Whether old data should overwrite currently stored data if it exists.",
+                            "type": "Boolean",
+                            "optional": true,
+                            "optdefault": "false"
+                        },
+                        {
+                            "name": "transform",
+                            "description": "The function to pass the old key data through before migrating.",
+                            "type": "Function",
+                            "optional": true
+                        }
+                    ]
+                }
+            ],
+            "example": [
+                "\n\n    var Store = require('storage-wrapper');\n    var store = new Store({\n        namespace: 'myNewApp'\n    });\n\n    // Migrate from the old app.\n    store.migrate({\n        toKey: 'new-key',\n        fromNamespace: 'myOldApp',\n        fromKey: 'old-key'\n    });\n    \n    // Migrate from global data. Useful when moving from other storage wrappers or regular ol' `localStorage`.\n    store.migrate({\n        toKey: 'other-new-key',\n        fromNamespace: '',\n        fromKey: 'other-old-key-on-global'\n    });\n    \n    // Migrate some JSON data that was stored as a string.\n    store.migrate({\n        toKey: 'new-json-key',\n        fromNamespace: 'myOldApp',\n        fromKey: 'old-json-key',\n        // Try converting some old JSON data.\n        transform: function (data) {\n            try {\n                return JSON.parse(data);\n            }\n            catch (e) {\n                return data;\n            }\n        }\n    });"
+            ],
+            "class": "Store"
+        },
+        {
+            "file": "index.js",
+            "line": 396,
+            "description": "Creates a substore that is nested in the current namespace.",
+            "itemtype": "method",
+            "name": "createSubstore",
+            "params": [
+                {
+                    "name": "namespace",
+                    "description": "The substore's namespace.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "The substore.",
+                "type": "Store"
+            },
+            "example": [
+                "\n\n    var Store = require('storage-wrapper');\n    // Create main store.\n    var store = new Store({\n        namespace: 'myapp'\n    });\n\n    // Create substore.\n    var substore = store.createSubstore('things');\n    substore.set('foo', 'bar');\n\n    substore.get('foo') === store.get('things:foo');\n    // true"
+            ],
+            "class": "Store"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nThis is used to shim any required browser APIs so that tests can run locally without need for a browser.",
+            "line": " test\\shims.js:1"
+        }
+    ]
+}
