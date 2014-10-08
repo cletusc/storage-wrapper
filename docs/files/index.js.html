@@ -240,6 +240,14 @@ Store.prototype.get = function (key, defaultValue) {
         else if (val.indexOf(&#x27;~Date:&#x27;) === 0) {
             val = new Date(val.replace(/^~Date:/, &#x27;&#x27;));
         }
+        // Handle numbers.
+        else if (val.indexOf(&#x27;~Number:&#x27;) === 0) {
+            val = parseInt(val.replace(/^~Number:/, &#x27;&#x27;), 10);
+        }
+        // Handle booleans.
+        else if (val.indexOf(&#x27;~Boolean:&#x27;) === 0) {
+            val = val.replace(/^~Boolean:/, &#x27;&#x27;) === &#x27;true&#x27;;
+        }
         // Handle objects.
         else if (val.indexOf(&#x27;~JSON:&#x27;) === 0) {
             val = val.replace(/^~JSON:/, &#x27;&#x27;);
@@ -294,8 +302,16 @@ Store.prototype.set = function (key, val, expires) {
     else if (val === Object(val)) {
         parsedVal = &#x27;~JSON:&#x27; + JSON.stringify(val);
     }
-    // Handle simple types.
-    else if ([&#x27;string&#x27;, &#x27;boolean&#x27;, &#x27;number&#x27;].indexOf(typeof val) &gt;= 0) {
+    // Handle numbers.
+    else if (typeof val === &#x27;number&#x27;) {
+        parsedVal = &#x27;~Number:&#x27; + val.toString();
+    }
+    // Handle booleans.
+    else if (typeof val === &#x27;boolean&#x27;) {
+        parsedVal = &#x27;~Boolean:&#x27; + val.toString();
+    }
+    // Handle strings.
+    else if (typeof val === &#x27;string&#x27;) {
         parsedVal = val;
     }
     // Throw if we don&#x27;t know what it is.

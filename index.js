@@ -152,6 +152,14 @@ Store.prototype.get = function (key, defaultValue) {
 		else if (val.indexOf('~Date:') === 0) {
 			val = new Date(val.replace(/^~Date:/, ''));
 		}
+		// Handle numbers.
+		else if (val.indexOf('~Number:') === 0) {
+			val = parseInt(val.replace(/^~Number:/, ''), 10);
+		}
+		// Handle booleans.
+		else if (val.indexOf('~Boolean:') === 0) {
+			val = val.replace(/^~Boolean:/, '') === 'true';
+		}
 		// Handle objects.
 		else if (val.indexOf('~JSON:') === 0) {
 			val = val.replace(/^~JSON:/, '');
@@ -206,8 +214,16 @@ Store.prototype.set = function (key, val, expires) {
 	else if (val === Object(val)) {
 		parsedVal = '~JSON:' + JSON.stringify(val);
 	}
-	// Handle simple types.
-	else if (['string', 'boolean', 'number'].indexOf(typeof val) >= 0) {
+	// Handle numbers.
+	else if (typeof val === 'number') {
+		parsedVal = '~Number:' + val.toString();
+	}
+	// Handle booleans.
+	else if (typeof val === 'boolean') {
+		parsedVal = '~Boolean:' + val.toString();
+	}
+	// Handle strings.
+	else if (typeof val === 'string') {
 		parsedVal = val;
 	}
 	// Throw if we don't know what it is.

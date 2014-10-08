@@ -180,7 +180,7 @@
         },
         {
             "file": "index.js",
-            "line": 177,
+            "line": 185,
             "description": "Sets a storage item on the current namespace.",
             "itemtype": "method",
             "name": "set",
@@ -206,7 +206,7 @@
         },
         {
             "file": "index.js",
-            "line": 236,
+            "line": 252,
             "description": "Gets all data for the current namespace.",
             "itemtype": "method",
             "name": "getAll",
@@ -218,7 +218,7 @@
         },
         {
             "file": "index.js",
-            "line": 250,
+            "line": 266,
             "description": "List all keys that are tied to the current namespace.",
             "itemtype": "method",
             "name": "listKeys",
@@ -230,7 +230,7 @@
         },
         {
             "file": "index.js",
-            "line": 269,
+            "line": 285,
             "description": "Removes a specific key and data from the current namespace.",
             "itemtype": "method",
             "name": "remove",
@@ -245,7 +245,7 @@
         },
         {
             "file": "index.js",
-            "line": 279,
+            "line": 295,
             "description": "Removes all data and keys from the current namespace.",
             "itemtype": "method",
             "name": "removeAll",
@@ -253,7 +253,7 @@
         },
         {
             "file": "index.js",
-            "line": 287,
+            "line": 303,
             "description": "Removes namespaced items from the cache so your next {{#crossLink \"Store/get\"}}Store#get{{/crossLink}} will be fresh from the storage.",
             "itemtype": "method",
             "name": "freshen",
@@ -268,7 +268,7 @@
         },
         {
             "file": "index.js",
-            "line": 299,
+            "line": 315,
             "description": "Migrate data from a different namespace to current namespace.",
             "itemtype": "method",
             "name": "migrate",
@@ -329,7 +329,7 @@
         },
         {
             "file": "index.js",
-            "line": 396,
+            "line": 412,
             "description": "Creates a substore that is nested in the current namespace.",
             "itemtype": "method",
             "name": "createSubstore",
