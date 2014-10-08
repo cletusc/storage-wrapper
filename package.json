@@ -1,7 +1,7 @@
 {
   "name": "storage-wrapper",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A storage wrapper for local/session Storage with a few extras. For use in browserify bundles (or anything where require would work).",
   "main": "index.js",
   "keywords": [
